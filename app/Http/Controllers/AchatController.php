@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\achat;
+use App\Models\Achat;
 use Illuminate\Http\Request;
 
 class AchatController extends Controller
@@ -41,10 +41,10 @@ class AchatController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\achat  $achat
+     * @param  \App\Models\Achat  $achat
      * @return \Illuminate\Http\Response
      */
-    public function show(achat $achat)
+    public function show(Achat $achat)
     {
         //
     }
@@ -52,10 +52,10 @@ class AchatController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\achat  $achat
+     * @param  \App\Models\Achat  $achat
      * @return \Illuminate\Http\Response
      */
-    public function edit(achat $achat)
+    public function edit(Achat $achat)
     {
         //
     }
@@ -64,10 +64,10 @@ class AchatController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\achat  $achat
+     * @param  \App\Models\Achat  $achat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, achat $achat)
+    public function update(Request $request, Achat $achat)
     {
         //
     }
@@ -75,10 +75,10 @@ class AchatController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\achat  $achat
+     * @param  \App\Models\Achat  $achat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(achat $achat)
+    public function destroy(Achat $achat)
     {
         //
     }
