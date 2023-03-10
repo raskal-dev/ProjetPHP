@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('terrains', function (Blueprint $table) {
-            $table->id("id_terrain");
+            $table->id();
             $table->String("nom_terrain");
             $table->double("superficie_terrain", 10.2);
             $table->foreignId("cite_id")->constrained("cites");
