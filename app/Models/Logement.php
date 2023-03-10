@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class terrain extends Model
+class Logement extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        "superficie_terrain",
-        "nom_terrain",
-        "cite_id"
+        "num_logement",
+        "type_vente",
+        "prix_logement",
+        "terrain_id"
     ];
 }

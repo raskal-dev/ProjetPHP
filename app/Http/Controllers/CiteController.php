@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cite;
+use App\Models\Cite;
 use Illuminate\Http\Request;
 
 class CiteController extends Controller
@@ -41,10 +41,10 @@ class CiteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\cite  $cite
+     * @param  \App\Models\Cite  $cite
      * @return \Illuminate\Http\Response
      */
-    public function show(cite $cite)
+    public function show(Cite $cite)
     {
         //
     }
@@ -52,10 +52,10 @@ class CiteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\cite  $cite
+     * @param  \App\Models\Cite  $cite
      * @return \Illuminate\Http\Response
      */
-    public function edit(cite $cite)
+    public function edit(Cite $cite)
     {
         //
     }
@@ -64,10 +64,10 @@ class CiteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\cite  $cite
+     * @param  \App\Models\Cite  $cite
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cite $cite)
+    public function update(Request $request, Cite $cite)
     {
         //
     }
@@ -75,10 +75,10 @@ class CiteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\cite  $cite
+     * @param  \App\Models\Cite  $cite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cite $cite)
+    public function destroy(Cite $cite)
     {
         //
     }
