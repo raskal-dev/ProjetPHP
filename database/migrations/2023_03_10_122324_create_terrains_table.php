@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cites', function (Blueprint $table) {
-            $table->id();
-            $table->String("libelle_cite");
-            $table->String("adresse_cite");
-            $table->String("code_postal_cite");
-            $table->foreignId("agence_id")->constrained("agences");
+        Schema::create('terrains', function (Blueprint $table) {
+            $table->id("id_terrain");
+            $table->String("nom_terrain");
+            $table->double("superficie_terrain", 10.2);
+            $table->foreignId("cite_id")->constrained("cites");
             $table->timestamps();
         });
 
@@ -32,9 +31,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table("cites", function (Blueprint $table){
-            $table->dropConstrainedForeignId("agence_id");
+        Schema::table("terrains", function (Blueprint $table) {
+            $table->dropConstrainedForeignId("cite_id");
         });
-        Schema::dropIfExists('cites');
+        Schema::dropIfExists('terrains');
     }
 };

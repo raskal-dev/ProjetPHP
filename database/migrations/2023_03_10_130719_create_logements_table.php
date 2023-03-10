@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cites', function (Blueprint $table) {
+        Schema::create('logements', function (Blueprint $table) {
             $table->id();
-            $table->String("libelle_cite");
-            $table->String("adresse_cite");
-            $table->String("code_postal_cite");
-            $table->foreignId("agence_id")->constrained("agences");
+            $table->String("num_logement");
+            $table->String("type_vente");
+            $table->double("prix_logement", 11.2);
+            $table->foreignId("terrain_id")->constrained("terrains");
             $table->timestamps();
         });
 
@@ -32,9 +32,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table("cites", function (Blueprint $table){
-            $table->dropConstrainedForeignId("agence_id");
+        Schema::table("logements", function (Blueprint $table) {
+            $table->dropConstrainedForeignId("terrain_id");
         });
-        Schema::dropIfExists('cites');
+        Schema::dropIfExists('logements');
     }
 };
