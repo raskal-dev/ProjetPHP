@@ -12,7 +12,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{{ asset("assets/css/styles.min.css?h=6f6b9c7c917835feb7e7e52df5d632bb") }}">
 
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
