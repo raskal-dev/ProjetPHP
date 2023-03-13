@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,8 +50,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
-            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
@@ -65,18 +66,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // $file = $request->file('avatar');
 
-        $user = User::create([
+        // $file_name = date("j F Y H i s") . "." . $file->getClientOriginalExtension();
+
+        // $file -> move(public_path('uploads/avatars/'), $file_name);
+
+        // $path = 'uploads/avatars/'.$file_name;
+
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
-        if ($data['photo']) {
-            $path = $data['photo']->move(public_path('photo'));
-            $user->photo = $path;
-            $user->save();
-        }
-        return $user;
     }
 }

@@ -10,7 +10,7 @@ class Agence extends Model
     use HasFactory;
 
     protected $fillable = [
-        "labelle_agence",
+        "libelle_agence",
         "adresse_agence",
         "tel_agence"
     ];

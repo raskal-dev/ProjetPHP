@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgenceController;
+use App\Http\Controllers\CiteController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,12 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/agences', [AgenceController::class, 'index'])->name('agence');
-Route::post('/agences/save', [AgenceController::class, 'store'])->name('agence_save');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/agence', [AgenceController::class, 'index'])->name('agence');
+Route::get('/agence/create', [AgenceController::class, 'create'])->name('agence.create');
+Route::post('/agence/save', [AgenceController::class, 'store'])->name('agence.save');
+Route::get('/cite', [CiteController::class, 'index'])->name('cite');
+
+

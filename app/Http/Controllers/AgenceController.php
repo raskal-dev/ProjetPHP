@@ -16,7 +16,7 @@ class AgenceController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +24,8 @@ class AgenceController extends Controller
      */
     public function index()
     {
-        $agence = Agence::orderBy("id", "desc")->get();
-        return view('agence.agence');
+        $agences = Agence::orderBy("id", "desc")->paginate(5);
+        return view('agence.agence', compact('agences'));
     }
 
     /**
@@ -35,7 +35,7 @@ class AgenceController extends Controller
      */
     public function create()
     {
-        //
+        return view('agence.createagence');
     }
 
     /**
@@ -48,7 +48,7 @@ class AgenceController extends Controller
     {
         // Valider les données envoyées par le formulaire
         $validatedData = $request->validate([
-            'labelle_agence' => 'required|string|max:255',
+            'libelle_agence' => 'required|string|max:255',
             'adresse_agence' => 'required|string|max:255',
             'tel_agence' => 'required|string|max:20',
         ]);
@@ -60,7 +60,7 @@ class AgenceController extends Controller
         $agence->save();
 
         // Rediriger l'utilisateur vers la page de la nouvelle agence avec un message de confirmation
-        return redirect()->route('agence.agence', $agence)->with('success', 'L\'agence a été créée avec succès.');
+        return redirect()->route('agence', $agence)->with('success', 'L\'agence a été créée avec succès.');
     }
 
     /**
@@ -120,6 +120,6 @@ class AgenceController extends Controller
         $agence->delete();
 
         // Rediriger l'utilisateur vers la liste des agences avec un message de confirmation
-        return redirect()->route('agences.index')->with('success', 'L\'agence a été supprimée avec succès.');
+        return redirect()->route('agence.agence')->with('success', 'L\'agence a été supprimée avec succès.');
     }
 }

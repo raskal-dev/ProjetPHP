@@ -14,7 +14,7 @@ class CiteController extends Controller
      */
     public function index()
     {
-        //
+        return view('cite.cite');
     }
 
     /**
