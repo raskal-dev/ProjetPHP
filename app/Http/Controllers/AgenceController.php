@@ -37,7 +37,6 @@ class AgenceController extends Controller
     {
         return view('agence.createagence');
     }
-
     /**
      * Store a newly created resource in storage.
      *

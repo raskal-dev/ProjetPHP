@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cite;
 use App\Models\Terrain;
 use Illuminate\Http\Request;
 
 class TerrainController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class TerrainController extends Controller
      */
     public function index()
     {
-        //
+        $terrains = Terrain::orderBy("id", "desc")->paginate(5);
+        return view('terrain.terrain', compact('terrains'));
     }
 
     /**
@@ -24,7 +36,8 @@ class TerrainController extends Controller
      */
     public function create()
     {
-        //
+        $cites = Cite::all();
+        return view('terrain.createTerrain', compact('cites'));
     }
 
     /**
@@ -35,7 +48,15 @@ class TerrainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'superficie_terrain' => 'required',
+            'nom_terrain' => 'required',
+            'cite_id' => 'required'
+        ]);
+
+        $terrain = new Terrain($validateData);
+        $terrain->save();
+        return redirect()->route('terrain')->with('success', "Le terrain a été ajouter avec success");
     }
 
     /**
@@ -57,7 +78,8 @@ class TerrainController extends Controller
      */
     public function edit(Terrain $terrain)
     {
-        //
+        $cites = Cite::all();
+        return view('terrain.updateTerrain', compact('terrain', 'cites'));
     }
 
     /**
@@ -69,7 +91,14 @@ class TerrainController extends Controller
      */
     public function update(Request $request, Terrain $terrain)
     {
-        //
+        $validateData = $request->validate([
+            'superficie_terrain' => 'required',
+            'nom_terrain' => 'required',
+            'cite_id' => 'required'
+        ]);
+
+        $terrain->update($validateData);
+        return redirect()->route('terrain')->with('success', 'Le terrain a été mettre à jour avec success');
     }
 
     /**
@@ -80,6 +109,7 @@ class TerrainController extends Controller
      */
     public function destroy(Terrain $terrain)
     {
-        //
+        $terrain->delete();
+        return redirect()->route('terrain')->with('success', "Le terrain '$terrain->nom_terrain' a été supprimer avec success");
     }
 }

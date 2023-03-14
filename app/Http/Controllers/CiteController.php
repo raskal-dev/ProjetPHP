@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agence;
 use App\Models\Cite;
 use Illuminate\Http\Request;
 
 class CiteController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class CiteController extends Controller
      */
     public function index()
     {
-        return view('cite.cite');
+        $cites = Cite::orderBy("id", "desc")->paginate(5);
+        return view('cite.cite', compact('cites'));
     }
 
     /**
@@ -24,7 +36,8 @@ class CiteController extends Controller
      */
     public function create()
     {
-        //
+        $agences = Agence::all();
+        return view('cite.createCite', compact('agences'));
     }
 
     /**
@@ -35,7 +48,18 @@ class CiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'libelle_cite' => 'required|string|max:255',
+            'adresse_cite' => 'required|string|max:255',
+            'code_postal_cite' => 'required|string|max:255',
+            'agence_id' => 'required|string|max:255'
+        ]);
+
+        $cite = new Cite($validateData);
+
+        $cite->save();
+
+        return redirect()->route('cite')->with('success', 'La cité a été ajouter avec success');
     }
 
     /**
@@ -57,7 +81,8 @@ class CiteController extends Controller
      */
     public function edit(Cite $cite)
     {
-        //
+        $agences = Agence::all();
+        return view('cite.updateCite', compact('cite', 'agences'));
     }
 
     /**
@@ -69,7 +94,15 @@ class CiteController extends Controller
      */
     public function update(Request $request, Cite $cite)
     {
-        //
+        $validateData = $request->validate([
+            'libelle_cite' => 'required|string|max:255',
+            'adresse_cite' => 'required|string|max:255',
+            'code_postal_cite' => 'required|string|max:255',
+            'agence_id' => 'required|string|max:255'
+        ]);
+
+        $cite->update($validateData);
+        return redirect()->route('cite')->with('success', 'La cité a été mettre à jour avec success');
     }
 
     /**
@@ -80,6 +113,7 @@ class CiteController extends Controller
      */
     public function destroy(Cite $cite)
     {
-        //
+        $cite->delete();
+        return redirect()->route('cite')->with('success', "La cité '$cite->libelle_cite' a été supprimer avec success");
     }
 }

@@ -15,4 +15,8 @@ class Cite extends Model
         "code_postal_cite",
         "agence_id"
     ];
+
+    public function agence() {
+        return $this->belongsTo(Agence::class);
+    }
 }

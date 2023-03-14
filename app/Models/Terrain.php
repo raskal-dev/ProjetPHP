@@ -14,4 +14,8 @@ class Terrain extends Model
         "nom_terrain",
         "cite_id"
     ];
+
+    public function cite() {
+        return $this->belongsTo(Cite::class);
+    }
 }
