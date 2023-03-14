@@ -82,7 +82,7 @@ class AgenceController extends Controller
      */
     public function edit(Agence $agence)
     {
-        //
+        return view('agence.updateagence', compact("agence"));
     }
 
     /**
@@ -96,13 +96,15 @@ class AgenceController extends Controller
     {
         // Valider les données envoyées par le formulaire
         $validatedData = $request->validate([
-            'labelle_agence' => 'required|string|max:255',
+            'libelle_agence' => 'required|string|max:255',
             'adresse_agence' => 'required|string|max:255',
             'tel_agence' => 'required|string|max:20',
         ]);
 
         // Mettre à jour l'agence avec les nouvelles données
         $agence->update($validatedData);
+
+        return redirect()->route('agence', $agence)->with('success', 'L\'agence a été mettre à jour avec succès.');
     }
 
     /**
@@ -114,12 +116,12 @@ class AgenceController extends Controller
     public function destroy(Agence $agence)
     {
         // Vérifier si l'utilisateur est autorisé à supprimer cette agence
-        $this->authorize('delete', $agence);
+        // $this->authorize('delete', $agence);
 
         // Supprimer l'agence de la base de données
         $agence->delete();
 
         // Rediriger l'utilisateur vers la liste des agences avec un message de confirmation
-        return redirect()->route('agence.agence')->with('success', 'L\'agence a été supprimée avec succès.');
+        return redirect()->route('agence')->with('success', "L'agence '$agence->libelle_agence' a été supprimée avec succès.");
     }
 }

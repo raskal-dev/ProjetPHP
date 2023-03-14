@@ -38,8 +38,12 @@
                                 <td>{{ $agence->adresse_agence }}</td>
                                 <td>{{ $agence->tel_agence }}</td>
                                 <td>
-                                    <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-                                    <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+                                    <a href="{{ route('agence.edit', ['agence' => $agence->id]) }}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a href="#"><i class="fa-solid fa-trash-can" onclick="if(confirm('Vous-voulez vraiment supprimer cette agence ?')){document.getElementById('form-{{ $agence->id }}').submit() }"></i></a>
+                                    <form id="form-{{ $agence->id }}" action="{{ route('agence.delete', ['agence' => $agence->id]) }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="delete">
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
