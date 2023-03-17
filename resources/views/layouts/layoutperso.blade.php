@@ -37,8 +37,7 @@
                         <li class="nav-item"><a class="nav-link {{ request()->is('cite') ? 'active' : '' }}" href="{{ route('cite') }}">Cité</a></li>
                         <li class="nav-item"><a class="nav-link {{ request()->is('terrain') ? 'active' : '' }}" href="{{ route('terrain') }}">Terrain</a></li>
                         <li class="nav-item"><a class="nav-link {{ request()->is('logement') ? 'active' : '' }}" href="{{ route('logement') }}">Logement</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Client</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Achat</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->is('achat') ? 'active' : '' }}" href="{{ route('achat') }}">Achat</a></li>
                         @if (Route::has('login'))
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

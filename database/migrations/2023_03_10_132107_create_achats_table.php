@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('achats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("client_id")->constrained("clients");
+            $table->String("nom_cli");
+            $table->String("tel_cli");
             $table->foreignId("logement_id")->constrained("logements");
             $table->timestamps();
         });
@@ -31,7 +32,6 @@ return new class extends Migration
     public function down()
     {
         Schema::table("achats", function (Blueprint $table) {
-            $table->dropConstrainedForeignId("client_id");
             $table->dropConstrainedForeignId("logement_id");
         });
         Schema::dropIfExists('achats');

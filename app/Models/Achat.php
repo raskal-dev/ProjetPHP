@@ -10,7 +10,12 @@ class Achat extends Model
     use HasFactory;
 
     protected $fillable = [
-        "client_id",
+        "nom_cli",
+        "tel_cli",
         "logement_id"
     ];
+
+    public function logement() {
+        $this->belongsTo(Logement::class);
+    }
 }

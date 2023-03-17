@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AgenceController extends Controller
 {
@@ -114,13 +115,15 @@ class AgenceController extends Controller
      */
     public function destroy(Agence $agence)
     {
-        // Vérifier si l'utilisateur est autorisé à supprimer cette agence
-        // $this->authorize('delete', $agence);
+        if (DB::table('cites')->where('agence_id', $agence->id)->exists()) {
+            return redirect()->route('agence')->with('errordelete', "L'agence '$agence->libelle_agence' ne peut pas être supprimer car il est encore attaché à une cité");
+        } else {
+            // Supprimer l'agence de la base de données
+            $agence->delete();
 
-        // Supprimer l'agence de la base de données
-        $agence->delete();
+            // Rediriger l'utilisateur vers la liste des agences avec un message de confirmation
+            return redirect()->route('agence')->with('success', "L'agence '$agence->libelle_agence' a été supprimée avec succès.");
+        }
 
-        // Rediriger l'utilisateur vers la liste des agences avec un message de confirmation
-        return redirect()->route('agence')->with('success', "L'agence '$agence->libelle_agence' a été supprimée avec succès.");
     }
 }

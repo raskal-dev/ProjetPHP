@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class Logement extends Model
 {
@@ -15,4 +16,8 @@ class Logement extends Model
         "prix_logement",
         "terrain_id"
     ];
+
+    public function terrain() {
+        return $this->belongsTo(Terrain::class);
+    }
 }

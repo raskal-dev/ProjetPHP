@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logement;
+use App\Models\Terrain;
 use Illuminate\Http\Request;
 
 class LogementController extends Controller
@@ -14,7 +15,8 @@ class LogementController extends Controller
      */
     public function index()
     {
-        //
+        $logements = Logement::orderBy("id", "desc")->paginate(5);
+        return view('logement.logement', compact('logements'));
     }
 
     /**
@@ -24,7 +26,8 @@ class LogementController extends Controller
      */
     public function create()
     {
-        //
+        $terrains = Terrain::all();
+        return view('logement.createLogement', compact('terrains'));
     }
 
     /**
@@ -35,7 +38,17 @@ class LogementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            "num_logement" => "required",
+            "type_vente" => 'required',
+            "prix_logement" => 'required',
+            "terrain_id" => 'required',
+        ]);
+
+        $logement = new Logement($validateData);
+
+        $logement->save();
+        return redirect()->route('logement')->with('success', "Logement a été créée avec succès");
     }
 
     /**
@@ -57,7 +70,8 @@ class LogementController extends Controller
      */
     public function edit(Logement $logement)
     {
-        //
+        $terrains = Terrain::all();
+        return view('logement.updateLogement', compact('logement', 'terrains'));
     }
 
     /**
@@ -69,7 +83,15 @@ class LogementController extends Controller
      */
     public function update(Request $request, Logement $logement)
     {
-        //
+        $validateData = $request->validate([
+            "num_logement" => "required",
+            "type_vente" => 'required',
+            "prix_logement" => 'required',
+            "terrain_id" => 'required',
+        ]);
+
+        $logement->update($validateData);
+        return redirect()->route('logement')->with('success', "Logement a été mettre à jour avec succès");
     }
 
     /**
@@ -80,6 +102,7 @@ class LogementController extends Controller
      */
     public function destroy(Logement $logement)
     {
-        //
+        $logement->delete();
+        return redirect()->route('logement')->with('success', "Logement '$logement->num_logement' a été supprimer avec succès");
     }
 }

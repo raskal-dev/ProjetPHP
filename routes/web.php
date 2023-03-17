@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AchatController;
 use App\Http\Controllers\AgenceController;
 use App\Http\Controllers\CiteController;
 use App\Http\Controllers\HomeController;
@@ -55,4 +56,12 @@ Route::post('/logement/save', [LogementController::class, 'store'])->name('logem
 Route::get('/logement/edit/{logement}', [LogementController::class, 'edit'])->name('logement.edit');
 Route::put('/logement/update/{logement}', [LogementController::class, 'update'])->name('logement.update');
 Route::delete('/logement/delete/{logement}', [LogementController::class, 'destroy'])->name('logement.delete');
+
+// Route Achat
+Route::get('/achat', [AchatController::class, 'index'])->name('achat');
+Route::get('/achat/create', [AchatController::class, 'create'])->name('achat.create');
+Route::post('/achat/save', [AchatController::class, 'store'])->name('achat.save');
+Route::get('/achat/edit/{achat}', [AchatController::class, 'edit'])->name('achat.edit');
+Route::put('/achat/update/{achat}', [AchatController::class, 'update'])->name('achat.update');
+Route::delete('/achat/delete/{achat}', [AchatController::class, 'destroy'])->name('achat.delete');
 
