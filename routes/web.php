@@ -65,3 +65,5 @@ Route::get('/achat/edit/{achat}', [AchatController::class, 'edit'])->name('achat
 Route::put('/achat/update/{achat}', [AchatController::class, 'update'])->name('achat.update');
 Route::delete('/achat/delete/{achat}', [AchatController::class, 'destroy'])->name('achat.delete');
 
+// Chart
+

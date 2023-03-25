@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cite;
 use App\Models\Terrain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TerrainController extends Controller
 {
@@ -109,7 +110,14 @@ class TerrainController extends Controller
      */
     public function destroy(Terrain $terrain)
     {
-        $terrain->delete();
-        return redirect()->route('terrain')->with('success', "Le terrain '$terrain->nom_terrain' a été supprimer avec success");
+        if (DB::table('logements')->where('terrain_id', $terrain->id)->exists()) {
+            return redirect()->route('terrain')->with('errordelete', "Le cité '$terrain->nom_terrain' ne peut pas être supprimer car il est encore attaché à un Logement");
+        } else {
+            // Supprimer le cité de la base de données
+            $terrain->delete();
+
+            // Rediriger l'utilisateur vers la liste des agences avec un message de confirmation
+            return redirect()->route('terrain')->with('success', "Le terrain '$terrain->nom_terrain' a été supprimer avec success");
+        }
     }
 }

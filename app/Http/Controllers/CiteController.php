@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Agence;
 use App\Models\Cite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CiteController extends Controller
 {
@@ -113,7 +114,14 @@ class CiteController extends Controller
      */
     public function destroy(Cite $cite)
     {
-        $cite->delete();
-        return redirect()->route('cite')->with('success', "La cité '$cite->libelle_cite' a été supprimer avec success");
+        if (DB::table('terrains')->where('cite_id', $cite->id)->exists()) {
+            return redirect()->route('cite')->with('errordelete', "Le cité '$cite->libelle_cite' ne peut pas être supprimer car il est encore attaché à une Terrain");
+        } else {
+            // Supprimer le cité de la base de données
+            $cite->delete();
+
+            // Rediriger l'utilisateur vers la liste des agences avec un message de confirmation
+            return redirect()->route('cite')->with('success', "La cité '$cite->libelle_cite' a été supprimer avec success");
+        }
     }
 }

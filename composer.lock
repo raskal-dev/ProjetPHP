@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1ed4555df546fd73a2d35808c382628",
+    "content-hash": "867318397743ad5d5cdc712be4ec8ec9",
     "packages": [
         {
             "name": "brick/math",
@@ -2263,6 +2263,52 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "phplot/phplot",
+            "version": "v8.0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPlot/phplot.git",
+                "reference": "477eeaef34a314b29b813870015c7c64e39d0c44"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPlot/phplot/zipball/477eeaef34a314b29b813870015c7c64e39d0c44",
+                "reference": "477eeaef34a314b29b813870015c7c64e39d0c44",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phplot\\Phplot\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "AJRepo",
+                    "email": "AJRepo@users.noreply.github.com"
+                }
+            ],
+            "description": "PHP graph library for dynamic scientific, business, and stock-market charts and graphs.",
+            "support": {
+                "issues": "https://github.com/PHPlot/phplot/issues",
+                "source": "https://github.com/PHPlot/phplot/tree/v8.0.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ajrepo",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-03-17T04:08:52+00:00"
         },
         {
             "name": "phpoption/phpoption",

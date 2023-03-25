@@ -13,6 +13,10 @@
                         <div class="alert alert-success">
                             <h3>{{ session()->get('success') }}</h3>
                         </div>
+                    @elseif (session()->has("errordelete"))
+                        <div class="alert alert-danger">
+                            <h4>{{ session()->get('errordelete') }}</h4>
+                        </div>
                     @endif
                 </section>
 
@@ -27,6 +31,7 @@
                             <th scope="col">Num Logement</th>
                             <th scope="col">Prix</th>
                             <th scope="col">Terrain</th>
+                            <th scope="col">Type de vente</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>

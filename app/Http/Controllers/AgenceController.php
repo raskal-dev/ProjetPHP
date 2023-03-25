@@ -124,6 +124,5 @@ class AgenceController extends Controller
             // Rediriger l'utilisateur vers la liste des agences avec un message de confirmation
             return redirect()->route('agence')->with('success', "L'agence '$agence->libelle_agence' a été supprimée avec succès.");
         }
-
     }
 }
